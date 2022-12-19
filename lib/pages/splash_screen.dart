@@ -21,18 +21,16 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     _controller =
-        AnimationController(duration: const Duration(seconds: 3), vsync: this);
+        AnimationController(duration: const Duration(seconds: 5), vsync: this);
 
-    _controller.forward();
+    _controller.repeat();
 
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _controller.reverse();
-      } else if (status == AnimationStatus.dismissed) {
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const LoginPage()));
-      }
-    });
+    /* ------------------------- Change Screen Function ------------------------- */
+
+    Future.delayed(const Duration(seconds: 4), (() {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: ((context) => const LoginPage())));
+    }));
   }
 
   /* ------------------ Dispose bg Process after exiting page ----------------- */
